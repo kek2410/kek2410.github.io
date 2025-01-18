@@ -47,6 +47,7 @@
                 }
                 , success: function (response, status, request) {
                   //통신 성공시 처리
+                  console.log(response);
                   varcode = response.split('_');
 
                   if (varcode[0] == "OK") {
@@ -93,6 +94,7 @@
                 }
                 , success: function (response, status, request) {
                   //통신 성공시 처리
+                  console.log(response);
                   varcode = response.split('_');
 
                   if (varcode[0] == "OK") {
