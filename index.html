@@ -22,7 +22,7 @@
       let result = '';
       params.forEach((value, key) => {
         if (key === 'txtsite') {
-          return value;
+          result = value;
         }
       });
       return result;
@@ -32,7 +32,7 @@
     window.onload = () => {
       $('#oc_site').val(getQueryParams());
     };
-    
+
     $(function () {
       /*  온라인 상담 처리  */
       $('.online_submit2').click(
