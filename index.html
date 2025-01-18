@@ -48,12 +48,13 @@
               // $('#userhp2').val(unescape($('#userhp2').val()));
               // $('#ir2').val(unescape($('#ir2').val()));
 
+              const site = $('#oc_site').val();
               const username2 = escape($('#username2').val()).replace(/\+/g, "+");
               const userhp2 = escape($('#userhp2').val()).replace(/\+/g, "+");
               const ir2 = escape($('#ir2').val()).replace(/\+/g, "+");
               const chk_userinfo2 = escape($('#chk_userinfo2').val()).replace(/\+/g, "+");
 
-              const serialize = `username2=${username2}&userhp2=${userhp2}&ir2=${ir2}&chk_userinfo2=${chk_userinfo2}`;
+              const serialize = `oc_site=${site}&username2=${username2}&userhp2=${userhp2}&ir2=${ir2}&chk_userinfo2=${chk_userinfo2}`;
 
               $.ajax({
 
@@ -101,13 +102,13 @@
               // $('#userhp2_2').val(unescape($('#userhp2_2').val()));
               // $('#ir2_2').val(unescape($('#ir2_2').val()));
 
-
+              const site = $('#oc_site').val();
               const username2 = escape($('#username2_2').val()).replace(/\+/g, "+");
               const userhp2 = escape($('#userhp2_2').val()).replace(/\+/g, "+");
               const ir2 = escape($('#ir2_2').val()).replace(/\+/g, "+");
               const chk_userinfo2 = escape($('#chk_userinfo2_2').val()).replace(/\+/g, "+");
 
-              const serialize = `username2=${username2}&userhp2=${userhp2}&ir2=${ir2}&chk_userinfo2=${chk_userinfo2}`;
+              const serialize = `oc_site=${site}&username2=${username2}&userhp2=${userhp2}&ir2=${ir2}&chk_userinfo2=${chk_userinfo2}`;
 
               $.ajax({
 
