@@ -37,11 +37,10 @@
 
                 type: "GET" //"GET", "GET"
                 , async: true //true, false
-                , url: "https://www.smart.ac.kr/main2016/share/online_reg_ok.asp" //Request URL
+                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
                 , dataType: "jsonp" //전송받을 데이터의 타입
                 , timeout: 300000 //제한시간 지정
                 , cache: false  //true, false
-                , data: Serialize
                 , error: function (request, status, error) {
                   alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
                 }
@@ -84,11 +83,10 @@
 
                 type: "GET" //"GET", "GET"
                 , async: true //true, false
-                , url: "https://www.smart.ac.kr/main2016/share/online_reg_ok.asp" //Request URL
+                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
                 , dataType: "jsonp" //전송받을 데이터의 타입
                 , timeout: 300000 //제한시간 지정
                 , cache: false  //true, false
-                , data: Serialize
                 , error: function (request, status, error) {
                   alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
                 }
