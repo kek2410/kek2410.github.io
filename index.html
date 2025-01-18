@@ -1,364 +1,438 @@
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<script type="text/javascript" src="/js/js_01.js?ver=20210809134017"></script>
-<script type="text/javascript" src="/js/js_02.js?ver=20210809134017"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"/>
 
-<script type="text/javascript" src="/js/jquery/jquery-1.9.1.min.js?ver=20210809134017"></script>
-<script type="text/javascript" src="/js/jquery/jquery.browser.min.js?ver=20210809134017"></script>
-<script type="text/javascript" src="/js/jquery/jquery-ui-1.10.2.min.js?ver=20210809134017"></script>
-<script type="text/javascript" src="/js/jquery.alphanumeric.js?ver=20210809134017"></script>
-<script type="text/javascript" src="/js/ui/css.browser.selector.js?ver=20210809134017"></script>
+  <script type="text/javascript" src="/js/js_01.js?ver=20210809134017"></script>
+  <script type="text/javascript" src="/js/js_02.js?ver=20210809134017"></script>
 
-<script type="text/javascript">
+  <script type="text/javascript" src="/js/jquery/jquery-1.9.1.min.js?ver=20210809134017"></script>
+  <script type="text/javascript" src="/js/jquery/jquery.browser.min.js?ver=20210809134017"></script>
+  <script type="text/javascript" src="/js/jquery/jquery-ui-1.10.2.min.js?ver=20210809134017"></script>
+  <script type="text/javascript" src="/js/jquery.alphanumeric.js?ver=20210809134017"></script>
+  <script type="text/javascript" src="/js/ui/css.browser.selector.js?ver=20210809134017"></script>
 
-$(function() {
-	 
-	/*  온라인 상담 처리  */
-	$('.online_submit2').click(
-		function() {
-			if (Validate()) {
+  <script type="text/javascript">
 
-				$('#username2').val( escape($('#username2').val()).replace(/\+/g, "+") );
-				$('#userhp2').val( escape($('#userhp2').val()).replace(/\+/g, "+") );
-				$('#ir2').val( escape($('#ir2').val()).replace(/\+/g, "+") );
+    $(function () {
 
-				var Serialize = $('#forms3').serialize();
-				$('#username2').val( unescape($('#username2').val()) );  
-				$('#userhp2').val( unescape($('#userhp2').val()) );  
-				$('#ir2').val( unescape($('#ir2').val()) );  
+      /*  온라인 상담 처리  */
+      $('.online_submit2').click(
+          function () {
+            if (Validate()) {
 
-					$.ajax({
+              $('#username2').val(escape($('#username2').val()).replace(/\+/g, "+"));
+              $('#userhp2').val(escape($('#userhp2').val()).replace(/\+/g, "+"));
+              $('#ir2').val(escape($('#ir2').val()).replace(/\+/g, "+"));
 
-						type : "GET" //"GET", "GET"
-						, async : true //true, false
-						, url : "/main2016/share/online_reg_ok.asp" //Request URL
-						, dataType : "html" //전송받을 데이터의 타입
-						, timeout : 300000 //제한시간 지정
-						, cache : false  //true, false
-						, data : Serialize
-						, error : function(request, status, error) {
-							alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." +error);
-						}
-						, success : function(response, status, request) {
-							//통신 성공시 처리
-							varcode = response.split('_');
+              var Serialize = $('#forms3').serialize();
+              $('#username2').val(unescape($('#username2').val()));
+              $('#userhp2').val(unescape($('#userhp2').val()));
+              $('#ir2').val(unescape($('#ir2').val()));
 
-							if ( varcode[0] == "OK")
-							{
-								alert("정상적으로 상담신청이 완료되었습니다.");
-								
-								$("#username2").val('');
-								$("#userhp2").val('');
-								$("#ir2").val('');
+              $.ajax({
 
+                type: "GET" //"GET", "GET"
+                , async: true //true, false
+                , url: "https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?txtsite=bz304" //Request URL
+                , dataType: "html" //전송받을 데이터의 타입
+                , timeout: 300000 //제한시간 지정
+                , cache: false  //true, false
+                , data: Serialize
+                , error: function (request, status, error) {
+                  alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
+                }
+                , success: function (response, status, request) {
+                  //통신 성공시 처리
+                  varcode = response.split('_');
 
-							}else{
-								alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
-							}
-						 }
-					});
+                  if (varcode[0] == "OK") {
+                    alert("정상적으로 상담신청이 완료되었습니다.");
 
+                    $("#username2").val('');
+                    $("#userhp2").val('');
+                    $("#ir2").val('');
 
-			}
-		}
-	);
+                  } else {
+                    alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
+                  }
+                }
+              });
 
-
-
-	$('.online_submit2_2').click(
-		function() {
-			if (Validate2_2()) {
-
-				$('#username2_2').val( escape($('#username2_2').val()).replace(/\+/g, "+") );
-				$('#userhp2_2').val( escape($('#userhp2_2').val()).replace(/\+/g, "+") );
-				$('#ir2_2').val( escape($('#ir2_2').val()).replace(/\+/g, "+") );
-
-				var Serialize = $('#forms3').serialize();
-				$('#username2_2').val( unescape($('#username2_2').val()) );  
-				$('#userhp2_2').val( unescape($('#userhp2_2').val()) );  
-				$('#ir2_2').val( unescape($('#ir2_2').val()) );  
-
-					$.ajax({
-
-						type : "GET" //"GET", "GET"
-						, async : true //true, false
-						, url : "/main2016/share/online_reg_ok.asp" //Request URL
-						, dataType : "html" //전송받을 데이터의 타입
-						, timeout : 300000 //제한시간 지정
-						, cache : false  //true, false
-						, data : Serialize
-						, error : function(request, status, error) {
-							alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." +error);
-						}
-						, success : function(response, status, request) {
-							//통신 성공시 처리
-							varcode = response.split('_');
-
-							if ( varcode[0] == "OK")
-							{
-								alert("정상적으로 상담신청이 완료되었습니다.");
-								
-								$("#username2_2").val('');
-								$("#userhp2_2").val('');
-								$("#ir2_2").val('');
-
-
-							}else{
-								alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
-							}
-						 }
-					});
-
-
-			}
-		}
-	);
-
-
-	$("#username2").keydown(function(e){
-
-		if (e.keyCode == 13)
-		{
-			$("#userhp2").focus();
-			return false;
-		}
-	});
-
-
-	$("#userhp2").keydown(function(e){
-
-		if (e.keyCode == 13)
-		{
-			$("#ir2").focus();
-			return false;
-		}
-
-	});
-});
- 
- 
-//데이터 임력폼 검증 시작
-function Validate() {
-
-	if ($("#username2").val() == "") {
-		alert("먼저 이름을 입력하세요.");
-		$("#username2").focus() ;
-		return false;
-	}
-
-	if ($("#userhp2").val() == "") {
-		alert( "먼저 연락처를 입력하세요.");
-		$("#userhp2").focus() ;
-		return false;
-	}
- 
-	 
-	if ($("#ir2").val() == "") {
-		alert( "먼저 상담내용을 입력하세요.");
-		$("#ir2").focus() ;
-		return false;
-	}
- 
-	 
-
-	if ($("[name='chk_userinfo2']").prop("checked") == false)
-	{
-		alert( "개인정보 수집 및 이용동의(고유식별정보)에  동의 하셔야 됩니다!");
-		return false;
-	}
-
-
-	return true;
-}	
- 
-
-
- 
- 
-//데이터 임력폼 검증 시작
-function Validate() {
-
-	if ($("#username2").val() == "") {
-		alert("먼저 이름을 입력하세요.");
-		$("#username2").focus() ;
-		return false;
-	}
-
-	if ($("#userhp2").val() == "") {
-		alert( "먼저 연락처를 입력하세요.");
-		$("#userhp2").focus() ;
-		return false;
-	}
- 
-	 
-	if ($("#ir3").val() == "") {
-		alert( "먼저 상담내용을 입력하세요.");
-		$("#ir3").focus() ;
-		return false;
-	}
- 
-	 
-
-	if ($("[name='chk_userinfo2']").prop("checked") == false)
-	{
-		alert( "개인정보 수집 및 이용동의(고유식별정보)에  동의 하셔야 됩니다!");
-		return false;
-	}
-
-
-	return true;
-}	
-
-
-function Validate2_2() {
-
-	if ($("#username2_2").val() == "") {
-		alert("먼저 이름을 입력하세요.");
-		$("#username3").focus() ;
-		return false;
-	}
-
-	if ($("#userhp2_2").val() == "") {
-		alert( "먼저 연락처를 입력하세요.");
-		$("#userhp3").focus() ;
-		return false;
-	}
- 
-	 
-	if ($("#ir2_2").val() == "") {
-		alert( "먼저 상담내용을 입력하세요.");
-		$("#ir2_2").focus() ;
-		return false;
-	}
- 
-	 
-
-	if ($("[name='chk_userinfo2_2']").prop("checked") == false)
-	{
-		alert( "개인정보 수집 및 이용동의(고유식별정보)에  동의 하셔야 됩니다!");
-		return false;
-	}
-
-
-	return true;
-}	
-</script>
-
-
-
-
-
-    <title>숭실원격 이벤트 랜딩페이지</title>
-   <style>
-        @media (min-width: 360px) and (max-width: 768px) {
-            * {
-                font-size: 15px;
             }
+          }
+      );
+
+      $('.online_submit2_2').click(
+          function () {
+            if (Validate2_2()) {
+
+              $('#username2_2').val(escape($('#username2_2').val()).replace(/\+/g, "+"));
+              $('#userhp2_2').val(escape($('#userhp2_2').val()).replace(/\+/g, "+"));
+              $('#ir2_2').val(escape($('#ir2_2').val()).replace(/\+/g, "+"));
+
+              var Serialize = $('#forms3').serialize();
+              $('#username2_2').val(unescape($('#username2_2').val()));
+              $('#userhp2_2').val(unescape($('#userhp2_2').val()));
+              $('#ir2_2').val(unescape($('#ir2_2').val()));
+
+              $.ajax({
+
+                type: "GET" //"GET", "GET"
+                , async: true //true, false
+                , url: "https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?txtsite=bz304" //Request URL
+                , dataType: "html" //전송받을 데이터의 타입
+                , timeout: 300000 //제한시간 지정
+                , cache: false  //true, false
+                , data: Serialize
+                , error: function (request, status, error) {
+                  alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
+                }
+                , success: function (response, status, request) {
+                  //통신 성공시 처리
+                  varcode = response.split('_');
+
+                  if (varcode[0] == "OK") {
+                    alert("정상적으로 상담신청이 완료되었습니다.");
+
+                    $("#username2_2").val('');
+                    $("#userhp2_2").val('');
+                    $("#ir2_2").val('');
+
+                  } else {
+                    alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
+                  }
+                }
+              });
+
+            }
+          }
+      );
+
+      $("#username2").keydown(function (e) {
+
+        if (e.keyCode == 13) {
+          $("#userhp2").focus();
+          return false;
         }
-        @media (min-width: 769px) and (max-width: 1200px) {
-            * {
-                font-size: 20px;
-            }
-        }
-        @media (min-width: 1201px) and (max-width: 1920px) {
-            * {
-                font-size: 20px;
-            }
+      });
+
+      $("#userhp2").keydown(function (e) {
+
+        if (e.keyCode == 13) {
+          $("#ir2").focus();
+          return false;
         }
 
-        * {box-sizing: border-box;}
-        img {vertical-align: top; width: 100%;}
-        a {text-decoration: none;}
-        textarea, button {vertical-align: middle;}
-        .landing_wrap {width: 100%; max-width: 1000px; margin: 0 auto; vertical-align: middle;}
-        .survey_wrap {display: block; width: 100%; margin: 0 auto  background-color: #0059D9; border-radius: 50px;}
-        .survey_box {display: block; margin: 0 auto; padding: 1.7rem 1.7rem 1.6rem; background-color: #0059D9; font: 600 30px 'Noto Sans KR', sans-serif; letter-spacing: -0.07em;}
-        .survey_txt {position: relative; margin: 0 auto;}
-        .survey_txt .tit {display: block; color: #fff; font-size: 1.1rem; line-height: 1.7; margin-bottom: 10px;}
-        .survey_txt .tit strong {font-size: 1.7rem; color: #333;}
-        .survey_txt .deco {position: absolute; top: -2.4rem; right: 0; margin: 0; font-size: 5rem; color: #ccc;}
-        .input_info_box {padding-bottom: 0.8rem;}
-        .input_info_box input {width: 48%; margin: 0.6rem 0; padding: 1rem 0.4rem; font-size: 0.6rem;}
-        .input_info_box textarea {width: 66%; height: 6rem; padding: 10px; resize:none; font: 0.6rem 'Noto Sans KR', sans-serif;}
-        .input_info_box textarea::placeholder {font: 0.8rem 1rem 'Noto Sans KR', sans-serif; letter-spacing: -0.07em;}
-		
-		.survey_btn {display: inline-block; width: 30%; height: 6rem; text-align: center; line-height: 6rem; color: #FFF; font-size: 1rem; font-weight: bold; background-color: #0C2F69; border: none; cursor: pointer; vertical-align: middle;}
+      });
+    });
 
-        .personal_check {width: 20px; height: 20px; vertical-align: middle;}
-        .personal_info {margin-left: 0.3rem; color: #888; font-size: 0.6rem; letter-spacing: -0.05em; cursor: pointer; vertical-align: middle;}
-        .personal_btn {margin-left: 0.3rem; padding: 3px 6px; font-size: 0.6rem; color: #fff; background-color: #909090; border: 1px solid #666; border-radius: 5px; vertical-align: middle;}
-        p.complete {display: block; width: 43%; height: 3.5rem; line-height: 3.5rem; margin: 0.8rem auto 0; text-align: center; color: #fff; font-size: 1.2rem; font-weight: bold; background-color: #0b6492; border-radius: 50px;}
+    //데이터 임력폼 검증 시작
+    function Validate() {
 
-        .txt_blue {color: #fff; font-size: inherit; }
-    </style>
+      if ($("#username2").val() == "") {
+        alert("먼저 이름을 입력하세요.");
+        $("#username2").focus();
+        return false;
+      }
+
+      if ($("#userhp2").val() == "") {
+        alert("먼저 연락처를 입력하세요.");
+        $("#userhp2").focus();
+        return false;
+      }
+
+      if ($("#ir2").val() == "") {
+        alert("먼저 상담내용을 입력하세요.");
+        $("#ir2").focus();
+        return false;
+      }
+
+      if ($("[name='chk_userinfo2']").prop("checked") == false) {
+        alert("개인정보 수집 및 이용동의(고유식별정보)에  동의 하셔야 됩니다!");
+        return false;
+      }
+
+      return true;
+    }
+
+    function Validate2_2() {
+
+      if ($("#username2_2").val() == "") {
+        alert("먼저 이름을 입력하세요.");
+        $("#username3").focus();
+        return false;
+      }
+
+      if ($("#userhp2_2").val() == "") {
+        alert("먼저 연락처를 입력하세요.");
+        $("#userhp3").focus();
+        return false;
+      }
+
+      if ($("#ir2_2").val() == "") {
+        alert("먼저 상담내용을 입력하세요.");
+        $("#ir2_2").focus();
+        return false;
+      }
+
+      if ($("[name='chk_userinfo2_2']").prop("checked") == false) {
+        alert("개인정보 수집 및 이용동의(고유식별정보)에  동의 하셔야 됩니다!");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
+
+  <title>숭실원격 이벤트 랜딩페이지</title>
+  <style>
+    @media (min-width: 360px) and (max-width: 768px) {
+      * {
+        font-size: 15px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1200px) {
+      * {
+        font-size: 20px;
+      }
+    }
+
+    @media (min-width: 1201px) and (max-width: 1920px) {
+      * {
+        font-size: 20px;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    img {
+      vertical-align: top;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    textarea, button {
+      vertical-align: middle;
+    }
+
+    .landing_wrap {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      vertical-align: middle;
+    }
+
+    .survey_wrap {
+      display: block;
+      width: 100%;
+      margin: 0 auto
+      background-color: #0059D9;
+      border-radius: 50px;
+    }
+
+    .survey_box {
+      display: block;
+      margin: 0 auto;
+      padding: 1.7rem 1.7rem 1.6rem;
+      background-color: #0059D9;
+      font: 600 30px 'Noto Sans KR', sans-serif;
+      letter-spacing: -0.07em;
+    }
+
+    .survey_txt {
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .survey_txt .tit {
+      display: block;
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .survey_txt .tit strong {
+      font-size: 1.7rem;
+      color: #333;
+    }
+
+    .survey_txt .deco {
+      position: absolute;
+      top: -2.4rem;
+      right: 0;
+      margin: 0;
+      font-size: 5rem;
+      color: #ccc;
+    }
+
+    .input_info_box {
+      padding-bottom: 0.8rem;
+    }
+
+    .input_info_box input {
+      width: 48%;
+      margin: 0.6rem 0;
+      padding: 1rem 0.4rem;
+      font-size: 0.6rem;
+    }
+
+    .input_info_box textarea {
+      width: 66%;
+      height: 6rem;
+      padding: 10px;
+      resize: none;
+      font: 0.6rem 'Noto Sans KR', sans-serif;
+    }
+
+    .input_info_box textarea::placeholder {
+      font: 0.8rem 1rem 'Noto Sans KR', sans-serif;
+      letter-spacing: -0.07em;
+    }
+
+    .survey_btn {
+      display: inline-block;
+      width: 30%;
+      height: 6rem;
+      text-align: center;
+      line-height: 6rem;
+      color: #FFF;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #0C2F69;
+      border: none;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .personal_check {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    .personal_info {
+      margin-left: 0.3rem;
+      color: #888;
+      font-size: 0.6rem;
+      letter-spacing: -0.05em;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .personal_btn {
+      margin-left: 0.3rem;
+      padding: 3px 6px;
+      font-size: 0.6rem;
+      color: #fff;
+      background-color: #909090;
+      border: 1px solid #666;
+      border-radius: 5px;
+      vertical-align: middle;
+    }
+
+    p.complete {
+      display: block;
+      width: 43%;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      margin: 0.8rem auto 0;
+      text-align: center;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background-color: #0b6492;
+      border-radius: 50px;
+    }
+
+    .txt_blue {
+      color: #fff;
+      font-size: inherit;
+    }
+  </style>
 </head>
 <body>
 
-	<form id="forms3" name="forms3" action="#none" AUTOCOMPLETE="off" method="post">
-	<input type="hidden" name="oc_site" value="bz304">
-    <div class="landing_wrap">
-        <div class="landing_con01">
-            <img src="./sang/1.jpg" alt="">
-        </div>
-       <div class="landing_con01" >
-			 <div class="landing_survey" style= "width: 1500px height:1000px" >
-            <div class="survey_wrap " style= "width: 1500px height:1000px"> 
-                <div class="survey_box" >
-                    <div class="survey_txt" >
-                        <span class="tit"><strong><span class="txt_blue">학습상담신청 </span></strong></br><div style="border-bottom: 2px solid #fff; margin: 5px 0px; font-size:25px;">숭실원격평생교육원에서 혜택도 받고! 자기개발도 하고!</div>80여 과목 보유 OPEN!</br>사회복지학, 아동학, 경영학, 컴퓨터공학, 평생교육사 과목 보유</br> 모바일 수강 가능</span>
-                        
-                        <div class="input_info_box">
-                            <input type="text" placeholder="이름을 입력하세요" name="username2" id="username2" value="">
-                            <input type="text" placeholder="연락처를 입력하세요" name="userhp2" id="userhp2" value="">
-                            <textarea name="ir2" id="ir2" cols="30" rows="2" placeholder="원하시는 상담내용을 입력하여 주세요." class=""></textarea>
-                            <a href="#none" class="survey_btn online_submit2">상담신청</a>
-                        </div>
-                        <label><input type="checkbox" id="chk_userinfo2" name="chk_userinfo2" title="개인정보 수집·이용에 대한 동의(함)" value="Y" checked="checked" class="personal_check"/><span class="personal_info">개인정보 수집 · 이용에 대한 동의</span></label>
-                       <a href="#none" onclick="popup_size('per', '/utf_move.asp?url=/main/etc/pop_personal.asp', 380, 300, 0, 0, 0, 1, 0); return false;"  title="새창열림"  class="personal_btn">내용보기</a>
-                    </div>
-                </div>
-				<div class="landing_con01">
-				 <img src="./1111.png" alt="">
-                </div>
-                <div class="landing_con01" >
-			 <div class="landing_survey" style= "width: 1500px height:1000px" >
-           <div class="landing_con01" >
-			 <div class="landing_survey" style= "width: 1500px height:1000px" >
-            <div class="survey_wrap " style= "width: 1500px height:1000px"> 
-                <div class="survey_box" >
-                    <div class="survey_txt" >
-                        <span class="tit"><strong><span class="txt_blue">추가 할인혜택! 빠른 상담신청 </span></strong></br><div style="border-bottom: 2px solid #fff; margin: 5px 0px; font-size:25px;">상담 받으실 내용을 남겨주시면 빠른 상담이 가능합니다!</span>
-                        
-                        <div class="input_info_box">
-                            <input type="text" placeholder="이름을 입력하세요" name="username2" id="username2_2" value="">
-                            <input type="text" placeholder="연락처를 입력하세요" name="userhp2" id="userhp2_2" value="">
-                            <textarea name="ir2" id="ir2_2" cols="30" rows="2" placeholder="희망분야를 입력하세요(ex, 사회복지사, 보육교사 등등)" class=""></textarea>
-                            <a href="#none" class="survey_btn online_submit2_2">상담신청</a>
-                        </div>
-                        <label><input type="checkbox" id="chk_userinfo2_2" name="chk_userinfo2" title="개인정보 수집·이용에 대한 동의(함)" value="Y" checked="checked" class="personal_check"/><span class="personal_info">개인정보 수집 · 이용에 대한 동의</span></label>
-                       <a href="#none" onclick="popup_size('per', '/utf_move.asp?url=/main/etc/pop_personal.asp', 380, 300, 0, 0, 0, 1, 0); return false;"  title="새창열림"  class="personal_btn">내용보기</a>
-                    </div>
-                </div>
-                </div>
-					<div class="landing_con01">
-				 <a href ="https://pf.kakao.com/_zAxoxkxl" target ="_blank"><img src="./sang/16.jpg" alt=""></a>
-                </div>
-        </div>
-		
-       
-              <!--  <p class="complete">상담신청완료</p> -->
-            </div>
-        </div>
-    
+<form id="forms3" name="forms3" action="#none" AUTOCOMPLETE="off" method="post">
+  <input type="hidden" name="oc_site" value="bz304">
+  <div class="landing_wrap">
+    <div class="landing_con01">
+      <img src="./sang/1.jpg" alt="">
     </div>
-	</form>
+    <div class="landing_con01">
+      <div class="landing_survey" style="width: 1500px height:1000px">
+        <div class="survey_wrap " style="width: 1500px height:1000px">
+          <div class="survey_box">
+            <div class="survey_txt">
+              <span class="tit"><strong><span class="txt_blue">학습상담신청 </span></strong></br>
+                <div style="border-bottom: 2px solid #fff; margin: 5px 0px; font-size:25px;">숭실원격평생교육원에서 혜택도 받고! 자기개발도 하고!</div>80여 과목 보유 OPEN!</br>
+                사회복지학, 아동학, 경영학, 컴퓨터공학, 평생교육사 과목 보유</br> 모바일 수강 가능</span>
+
+              <div class="input_info_box">
+                <input type="text" placeholder="이름을 입력하세요" name="username2" id="username2" value="">
+                <input type="text" placeholder="연락처를 입력하세요" name="userhp2" id="userhp2" value="">
+                <textarea name="ir2" id="ir2" cols="30" rows="2" placeholder="원하시는 상담내용을 입력하여 주세요." class=""></textarea>
+                <a href="#none" class="survey_btn online_submit2">상담신청</a>
+              </div>
+              <label><input type="checkbox" id="chk_userinfo2" name="chk_userinfo2" title="개인정보 수집·이용에 대한 동의(함)"
+                            value="Y" checked="checked" class="personal_check"/><span class="personal_info">개인정보 수집 · 이용에 대한 동의</span></label>
+              <a href="#none"
+                 onclick="popup_size('per', '/utf_move.asp?url=/main/etc/pop_personal.asp', 380, 300, 0, 0, 0, 1, 0); return false;"
+                 title="새창열림" class="personal_btn">내용보기</a>
+            </div>
+          </div>
+          <div class="landing_con01">
+            <img src="./1111.png" alt="">
+          </div>
+          <div class="landing_con01">
+            <div class="landing_survey" style="width: 1500px height:1000px">
+              <div class="landing_con01">
+                <div class="landing_survey" style="width: 1500px height:1000px">
+                  <div class="survey_wrap " style="width: 1500px height:1000px">
+                    <div class="survey_box">
+                      <div class="survey_txt">
+                        <span class="tit"><strong><span class="txt_blue">추가 할인혜택! 빠른 상담신청 </span></strong></br>
+                          <div style="border-bottom: 2px solid #fff; margin: 5px 0px; font-size:25px;">상담 받으실 내용을 남겨주시면 빠른 상담이 가능합니다!</span>
+
+                        <div class="input_info_box">
+                          <input type="text" placeholder="이름을 입력하세요" name="username2" id="username2_2" value="">
+                          <input type="text" placeholder="연락처를 입력하세요" name="userhp2" id="userhp2_2" value="">
+                          <textarea name="ir2" id="ir2_2" cols="30" rows="2"
+                                    placeholder="희망분야를 입력하세요(ex, 사회복지사, 보육교사 등등)" class=""></textarea>
+                          <a href="#none" class="survey_btn online_submit2_2">상담신청</a>
+                        </div>
+                        <label><input type="checkbox" id="chk_userinfo2_2" name="chk_userinfo2"
+                                      title="개인정보 수집·이용에 대한 동의(함)" value="Y" checked="checked"
+                                      class="personal_check"/><span
+                          class="personal_info">개인정보 수집 · 이용에 대한 동의</span></label>
+                        <a href="#none"
+                           onclick="popup_size('per', 'https://www.smart.ac.kr/utf_move.asp?url=/main/etc/pop_personal.asp', 380, 300, 0, 0, 0, 1, 0); return false;"
+                           title="새창열림" class="personal_btn">내용보기</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="landing_con01">
+                    <a href="https://pf.kakao.com/_zAxoxkxl" target="_blank"><img src="./sang/16.jpg" alt=""></a>
+                  </div>
+                </div>
+
+
+                <!--  <p class="complete">상담신청완료</p> -->
+              </div>
+            </div>
+
+          </div>
+</form>
 </body>
 </html>
