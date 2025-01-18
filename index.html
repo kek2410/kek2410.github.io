@@ -19,28 +19,21 @@
     // 쿼리스트링 파싱 함수
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
-      const result = {};
+      let result = '';
       params.forEach((value, key) => {
-        result[key] = value;
+        if (key === 'txtsite') {
+          return value;
+        }
       });
       return result;
     }
 
     // 페이지 로드 시 form 요소에 값 설정
     window.onload = () => {
-      const queryParams = getQueryParams();
-      // form 요소에 query parameter 값을 넣기
-      for (const [key, value] of Object.entries(queryParams)) {
-        if (key === 'txtsite') {
-          const input = document.querySelector(`[name="oc_site"]`);
-          if (input) {
-            input.value = value;
-          }
-        }
-      }
+      $('#oc_site').val(getQueryParams());
     };
+    
     $(function () {
-
       /*  온라인 상담 처리  */
       $('.online_submit2').click(
           function () {
@@ -387,7 +380,7 @@
 <body>
 
 <form id="forms3" name="forms3" action="#none" AUTOCOMPLETE="off" method="post">
-  <input type="hidden" name="oc_site" value="bz304">
+  <input type="hidden" name="oc_site" id="oc_site" value="">
   <div class="landing_wrap">
     <div class="landing_con01">
       <img src="./sang/1.jpg" alt="">
