@@ -24,43 +24,58 @@
           function () {
             if (Validate()) {
 
-              $('#username2').val(escape($('#username2').val()).replace(/\+/g, "+"));
-              $('#userhp2').val(escape($('#userhp2').val()).replace(/\+/g, "+"));
-              $('#ir2').val(escape($('#ir2').val()).replace(/\+/g, "+"));
+              // $('#username2').val(escape($('#username2').val()).replace(/\+/g, "+"));
+              // $('#userhp2').val(escape($('#userhp2').val()).replace(/\+/g, "+"));
+              // $('#ir2').val(escape($('#ir2').val()).replace(/\+/g, "+"));
+              //
+              // var Serialize = $('#forms3').serialize();
+              // $('#username2').val(unescape($('#username2').val()));
+              // $('#userhp2').val(unescape($('#userhp2').val()));
+              // $('#ir2').val(unescape($('#ir2').val()));
+              const name = $('#username2').val();
+              const phone = $('#userhp2').val();
+              const ir = $('#ir2').val();
 
-              var Serialize = $('#forms3').serialize();
-              $('#username2').val(unescape($('#username2').val()));
-              $('#userhp2').val(unescape($('#userhp2').val()));
-              $('#ir2').val(unescape($('#ir2').val()));
 
-              $.ajax({
+              // 이메일 주소, 제목, 본문 설정
+              const email = "bbawool@naver.com";
+              const subject = `[${name}] 상담문의`;
+              const body = `${ir} \n phone : ${phone}`;
 
-                type: "GET" //"GET", "GET"
-                , async: true //true, false
-                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
-                , dataType: "html" //전송받을 데이터의 타입
-                , timeout: 300000 //제한시간 지정
-                , cache: false  //true, false
-                , error: function (request, status, error) {
-                  alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
-                }
-                , success: function (response, status, request) {
-                  //통신 성공시 처리
-                  console.log(response);
-                  varcode = response.split('_');
+              // mailto 링크 생성
+              const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-                  if (varcode[0] == "OK") {
-                    alert("정상적으로 상담신청이 완료되었습니다.");
-
-                    $("#username2").val('');
-                    $("#userhp2").val('');
-                    $("#ir2").val('');
-
-                  } else {
-                    alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
-                  }
-                }
-              });
+              // 이메일 클라이언트 열기
+              window.location.href = mailtoLink;
+              alert("정상적으로 상담신청이 완료되었습니다.");
+              // $.ajax({
+              //
+              //   type: "GET" //"GET", "GET"
+              //   , async: true //true, false
+              //   , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
+              //   , dataType: "html" //전송받을 데이터의 타입
+              //   , timeout: 300000 //제한시간 지정
+              //   , cache: false  //true, false
+              //   , error: function (request, status, error) {
+              //     alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
+              //   }
+              //   , success: function (response, status, request) {
+              //     //통신 성공시 처리
+              //     console.log(response);
+              //     varcode = response.split('_');
+              //
+              //     if (varcode[0] == "OK") {
+              //       alert("정상적으로 상담신청이 완료되었습니다.");
+              //
+              //       $("#username2").val('');
+              //       $("#userhp2").val('');
+              //       $("#ir2").val('');
+              //
+              //     } else {
+              //       alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
+              //     }
+              //   }
+              // });
 
             }
           }
@@ -70,43 +85,59 @@
           function () {
             if (Validate2_2()) {
 
-              $('#username2_2').val(escape($('#username2_2').val()).replace(/\+/g, "+"));
-              $('#userhp2_2').val(escape($('#userhp2_2').val()).replace(/\+/g, "+"));
-              $('#ir2_2').val(escape($('#ir2_2').val()).replace(/\+/g, "+"));
+              const name = $('#username2').val();
+              const phone = $('#userhp2').val();
+              const ir = $('#ir2').val();
 
-              var Serialize = $('#forms3').serialize();
-              $('#username2_2').val(unescape($('#username2_2').val()));
-              $('#userhp2_2').val(unescape($('#userhp2_2').val()));
-              $('#ir2_2').val(unescape($('#ir2_2').val()));
 
-              $.ajax({
+              // 이메일 주소, 제목, 본문 설정
+              const email = "bbawool@naver.com";
+              const subject = `[${name}] 상담문의`;
+              const body = `${ir} \n phone : ${phone}`;
 
-                type: "GET" //"GET", "GET"
-                , async: true //true, false
-                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
-                , dataType: "html" //전송받을 데이터의 타입
-                , timeout: 300000 //제한시간 지정
-                , cache: false  //true, false
-                , error: function (request, status, error) {
-                  alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
-                }
-                , success: function (response, status, request) {
-                  //통신 성공시 처리
-                  console.log(response);
-                  varcode = response.split('_');
+              // mailto 링크 생성
+              const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-                  if (varcode[0] == "OK") {
-                    alert("정상적으로 상담신청이 완료되었습니다.");
-
-                    $("#username2_2").val('');
-                    $("#userhp2_2").val('');
-                    $("#ir2_2").val('');
-
-                  } else {
-                    alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
-                  }
-                }
-              });
+              // 이메일 클라이언트 열기
+              window.location.href = mailtoLink;
+              alert("정상적으로 상담신청이 완료되었습니다.");
+              // $('#username2_2').val(escape($('#username2_2').val()).replace(/\+/g, "+"));
+              // $('#userhp2_2').val(escape($('#userhp2_2').val()).replace(/\+/g, "+"));
+              // $('#ir2_2').val(escape($('#ir2_2').val()).replace(/\+/g, "+"));
+              //
+              // var Serialize = $('#forms3').serialize();
+              // $('#username2_2').val(unescape($('#username2_2').val()));
+              // $('#userhp2_2').val(unescape($('#userhp2_2').val()));
+              // $('#ir2_2').val(unescape($('#ir2_2').val()));
+              //
+              // $.ajax({
+              //
+              //   type: "GET" //"GET", "GET"
+              //   , async: true //true, false
+              //   , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
+              //   , dataType: "html" //전송받을 데이터의 타입
+              //   , timeout: 300000 //제한시간 지정
+              //   , cache: false  //true, false
+              //   , error: function (request, status, error) {
+              //     alert("잘못된 정보로 온라인 상담을 신청하지 못하였습니다." + error);
+              //   }
+              //   , success: function (response, status, request) {
+              //     //통신 성공시 처리
+              //     console.log(response);
+              //     varcode = response.split('_');
+              //
+              //     if (varcode[0] == "OK") {
+              //       alert("정상적으로 상담신청이 완료되었습니다.");
+              //
+              //       $("#username2_2").val('');
+              //       $("#userhp2_2").val('');
+              //       $("#ir2_2").val('');
+              //
+              //     } else {
+              //       alter("잘못된 정보로 온라인 상담을 신청하지 못하였습니다.");
+              //     }
+              //   }
+              // });
 
             }
           }
