@@ -39,20 +39,27 @@
           function () {
             if (Validate()) {
 
-              $('#username2').val(escape($('#username2').val()).replace(/\+/g, "+"));
-              $('#userhp2').val(escape($('#userhp2').val()).replace(/\+/g, "+"));
-              $('#ir2').val(escape($('#ir2').val()).replace(/\+/g, "+"));
+              // $('#username2').val(escape($('#username2').val()).replace(/\+/g, "+"));
+              // $('#userhp2').val(escape($('#userhp2').val()).replace(/\+/g, "+"));
+              // $('#ir2').val(escape($('#ir2').val()).replace(/\+/g, "+"));
+              //
+              // var Serialize = $('#forms3').serialize();
+              // $('#username2').val(unescape($('#username2').val()));
+              // $('#userhp2').val(unescape($('#userhp2').val()));
+              // $('#ir2').val(unescape($('#ir2').val()));
 
-              var Serialize = $('#forms3').serialize();
-              $('#username2').val(unescape($('#username2').val()));
-              $('#userhp2').val(unescape($('#userhp2').val()));
-              $('#ir2').val(unescape($('#ir2').val()));
+              const username2 = escape($('#username2').val()).replace(/\+/g, "+");
+              const userhp2 = escape($('#userhp2').val()).replace(/\+/g, "+");
+              const ir2 = escape($('#ir2').val()).replace(/\+/g, "+");
+              const chk_userinfo2 = escape($('#chk_userinfo2').val()).replace(/\+/g, "+");
+
+              const serialize = `username2=${username2}&userhp2=${userhp2}&ir2=${ir2}&chk_userinfo2=${chk_userinfo2}`;
 
               $.ajax({
 
                 type: "GET" //"GET", "GET"
                 , async: true //true, false
-                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
+                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${serialize}` //Request URL
                 , dataType: "jsonp" //전송받을 데이터의 타입
                 , timeout: 300000 //제한시간 지정
                 , cache: false  //true, false
@@ -85,20 +92,28 @@
           function () {
             if (Validate2_2()) {
 
-              $('#username2_2').val(escape($('#username2_2').val()).replace(/\+/g, "+"));
-              $('#userhp2_2').val(escape($('#userhp2_2').val()).replace(/\+/g, "+"));
-              $('#ir2_2').val(escape($('#ir2_2').val()).replace(/\+/g, "+"));
+              // $('#username2_2').val(escape($('#username2_2').val()).replace(/\+/g, "+"));
+              // $('#userhp2_2').val(escape($('#userhp2_2').val()).replace(/\+/g, "+"));
+              // $('#ir2_2').val(escape($('#ir2_2').val()).replace(/\+/g, "+"));
+              //
+              // var Serialize = $('#forms3').serialize();
+              // $('#username2_2').val(unescape($('#username2_2').val()));
+              // $('#userhp2_2').val(unescape($('#userhp2_2').val()));
+              // $('#ir2_2').val(unescape($('#ir2_2').val()));
 
-              var Serialize = $('#forms3').serialize();
-              $('#username2_2').val(unescape($('#username2_2').val()));
-              $('#userhp2_2').val(unescape($('#userhp2_2').val()));
-              $('#ir2_2').val(unescape($('#ir2_2').val()));
+
+              const username2 = escape($('#username2_2').val()).replace(/\+/g, "+");
+              const userhp2 = escape($('#userhp2_2').val()).replace(/\+/g, "+");
+              const ir2 = escape($('#ir2_2').val()).replace(/\+/g, "+");
+              const chk_userinfo2 = escape($('#chk_userinfo2_2').val()).replace(/\+/g, "+");
+
+              const serialize = `username2=${username2}&userhp2=${userhp2}&ir2=${ir2}&chk_userinfo2=${chk_userinfo2}`;
 
               $.ajax({
 
                 type: "GET" //"GET", "GET"
                 , async: true //true, false
-                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${Serialize}` //Request URL
+                , url: `https://www.smart.ac.kr/main2016/share/online_reg_ok.asp?${serialize}` //Request URL
                 , dataType: "jsonp" //전송받을 데이터의 타입
                 , timeout: 300000 //제한시간 지정
                 , cache: false  //true, false
@@ -454,13 +469,13 @@
                           <div style="border-bottom: 2px solid #fff; margin: 5px 0px; font-size:25px;">상담 받으실 내용을 남겨주시면 빠른 상담이 가능합니다!</span>
 
                         <div class="input_info_box">
-                          <input type="text" placeholder="이름을 입력하세요" name="username2" id="username2_2" value="">
-                          <input type="text" placeholder="연락처를 입력하세요" name="userhp2" id="userhp2_2" value="">
-                          <textarea name="ir2" id="ir2_2" cols="30" rows="2"
+                          <input type="text" placeholder="이름을 입력하세요" name="username2_2" id="username2_2" value="">
+                          <input type="text" placeholder="연락처를 입력하세요" name="userhp2_2" id="userhp2_2" value="">
+                          <textarea name="ir2_2" id="ir2_2" cols="30" rows="2"
                                     placeholder="희망분야를 입력하세요(ex, 사회복지사, 보육교사 등등)" class=""></textarea>
                           <a href="#none" class="survey_btn online_submit2_2">상담신청</a>
                         </div>
-                        <label><input type="checkbox" id="chk_userinfo2_2" name="chk_userinfo2"
+                        <label><input type="checkbox" id="chk_userinfo2_2" name="chk_userinfo2_2"
                                       title="개인정보 수집·이용에 대한 동의(함)" value="Y" checked="checked"
                                       class="personal_check"/><span
                           class="personal_info">개인정보 수집 · 이용에 대한 동의</span></label>
